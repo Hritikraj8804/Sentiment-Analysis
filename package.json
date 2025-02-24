@@ -1,0 +1,14 @@
+{
+  "name": "sentiment-analysis",
+  "version": "1.0.0",
+  "description": "This repository contains a comprehensive sentiment analysis project that includes a machine learning model for training and testing, and data analysis for sentiment analysis.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
