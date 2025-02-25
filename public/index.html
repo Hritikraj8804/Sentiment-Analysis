@@ -3,47 +3,82 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <title>Home</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="style.css">
+    <title>Sentiment Analysis</title>
 </head>
 <body>
     <header>
-        <div>Logo</div>
-        <div>
-            <nav>
+        <div class="logo">
+            <img src="images.png" alt="Logo" style="height: 40px;"> <!-- Logo Image -->
+        </div>
+        <div class="nav-container">
+            <nav id="navbar">
                 <ul>
                     <li><a href="#home">Home</a></li>
                     <li><a href="#about">About</a></li>
+                    <li><a href="#analysis">Analysis</a></li>
+                    <li><a href="#metrics">Metrics</a></li>
                     <li><a href="#review">Review</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
+            <div class="hamburger" id="hamburger-menu">
+                <i class="fas fa-bars"></i> <!-- Hamburger Icon -->
+            </div>
         </div>
     </header>
     <main>
         <section id="home">
-            <p>Welcome to Sentiment Analysis Project.</p>
-
+            <h1>Welcome to the Sentiment Analysis Project</h1>
+            <p>We provide insightful sentiment analysis on reviews and feedback.</p>
         </section>
         <section id="about">
-            <p>This Project is for Sentiment Analysis.</p>
-
+            <h2>About the Project</h2>
+            <p>This project leverages advanced natural language processing techniques to analyze sentiment in textual data. It can identify positive, negative, and neutral sentiments.</p>
         </section>
         <section id="review">
-            <p>Welcome to Sentiment Analysis Project.</p>
-            <form id="sentiment-form" action="sentiment" method="post">
-                <label for="review">Enter your review:</label>
-                <textarea id="review" name="review" rows="4" cols="50" placeholder="Enter your review here..."></textarea>
-                <br>
+            <h2>Review & Feedback</h2>
+            <form id="sentiment-form" action="formcsv" method="post" enctype="multipart/form-data">
+                <label for="csv_file">Upload a CSV file (reviews and feedback):</label>
+                <input type="file" id="csv_file" name="csv_file" accept=".csv">
                 <button type="submit">Submit</button>
             </form>
         </section>
+        <section id="analysis">
+            <h2>Analysis</h2>
+            <p>Analyze customer feedback to understand sentiment trends, detect polarity, and visualize emotions.</p>
+            <div class="graph-container">
+                <div class="chart">Graph Placeholder</div> <!-- Placeholder for Graph -->
+            </div>
+        </section>
+        <section id="metrics">
+            <h2>Sentiment Metrics</h2>
+            <div class="metrics">
+                <div class="metric">
+                    <p>Positive Sentiment: 75%</p>
+                </div>
+                <div class="metric">
+                    <p>Negative Sentiment: 15%</p>
+                </div>
+                <div class="metric">
+                    <p>Neutral Sentiment: 10%</p>
+                </div>
+            </div>
+        </section>
         <section id="contact">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.</p>
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need further assistance, feel free to reach out!</p>
         </section>
     </main>
     <footer>
-        <p>&copy; 2025</p>
+        <div class="social-icons">
+            <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+        <p>&copy; 2025 Sentiment Analysis Project</p>
     </footer>
+    <script src="script.js"></script> <!-- For JavaScript functionality (like hamburger menu) -->
 </body>
 </html>

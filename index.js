@@ -14,7 +14,7 @@ app.get('/', (req, res) => {
     });
   });
 
-app.post('/submit', (req, res) => {
+app.post('/formcsv', (req, res) => {
     res.send('Form submitted successfully');
     });
 

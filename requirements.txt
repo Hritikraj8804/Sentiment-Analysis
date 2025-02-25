@@ -1,0 +1,9 @@
+pandas
+seaborn
+matplotlib
+wordcloud
+nltk
+scikit-learn
+contractions
+emoji
+beautifulsoup4
