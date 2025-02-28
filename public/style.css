@@ -310,3 +310,106 @@ input[type="file"] {
 #results-display {
     margin-top: 20px;
 }
+
+.summary-stats {
+    background-color: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.sentiment-breakdown {
+    margin-top: 20px;
+}
+
+.sentiment-breakdown ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sentiment-breakdown li {
+    margin: 10px 0;
+    padding: 8px 15px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.visualizations {
+    margin-top: 30px;
+}
+
+.viz-row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.viz-item {
+    flex: 1;
+    min-width: 300px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.viz-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+}
+
+.viz-item h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.example-reviews {
+    margin-top: 40px;
+}
+
+.review-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.review-box.positive {
+    border-left: 4px solid #28a745;
+}
+
+.review-box.negative {
+    border-left: 4px solid #dc3545;
+}
+
+.review-box h4 {
+    margin-top: 0;
+    color: #333;
+}
+
+.review-box p {
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+#upload-status {
+    margin: 20px 0;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
+#upload-status.error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+#upload-status.success {
+    background-color: #d4edda;
+    color: #155724;
+}
