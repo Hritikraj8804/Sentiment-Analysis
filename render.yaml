@@ -2,10 +2,19 @@ services:
   - type: web
     name: sentiment-analysis
     env: node
+    plan: free
     buildCommand: npm install
     startCommand: npm start
     envVars:
       - key: NODE_ENV
         value: production
+      - key: PORT
+        value: 3000
     healthCheckPath: /
-    autoDeploy: true 
+    autoDeploy: false # We're using deploy hooks instead
+    branch: main
+    rootDir: .
+    disk:
+      name: uploads
+      mountPath: /opt/render/project/src/uploads
+      sizeGB: 1 
