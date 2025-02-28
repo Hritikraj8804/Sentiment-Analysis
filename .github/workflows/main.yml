@@ -1,4 +1,4 @@
-name: Deploy
+name: Deploy to Render
 
 on:
   push:
@@ -6,17 +6,10 @@ on:
 
 jobs:
   deploy:
+    name: Deploy to Render
     runs-on: ubuntu-latest
-
+    
     steps:
-    - uses: actions/checkout@v3
-
-    - name: Deploy to Render
-      env:
-        RENDER_TOKEN: ${{ secrets.RENDER_TOKEN }}
-        RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
-      run: |
-        curl -X POST \
-          -H "Authorization: Bearer $RENDER_TOKEN" \
-          -H "Content-Type: application/json" \
-          "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys" 
+      - name: Trigger Render Deploy
+        run: |
+          curl "${{ secrets.RENDER_DEPLOY_HOOK_URL }}" 
