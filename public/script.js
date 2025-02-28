@@ -28,6 +28,33 @@ document.addEventListener('DOMContentLoaded', function () {
         document.body.classList.remove('sidebar-open');
     });
 
+    function showAnalyzingAnimation() {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.innerHTML = `
+            <div class="analyzing-animation">
+                <span class="analyzing-text">Analyzing</span>
+                <div class="dots-animation">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+        `;
+    }
+
+    function showErrorAnimation(message) {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.innerHTML = `
+            <div class="error-animation">
+                <div class="error-icon"></div>
+                <span class="error-text">${message}</span>
+            </div>
+        `;
+    }
+
     document.getElementById('sentiment-form').addEventListener('submit', async (e) => {
         e.preventDefault();
         
@@ -35,16 +62,16 @@ document.addEventListener('DOMContentLoaded', function () {
         const file = formData.get('csv_file');
         
         if (!file) {
-            document.getElementById('upload-status').textContent = 'Please select a CSV file.';
+            showErrorAnimation('Please select a file first!');
             return;
         }
 
         if (!file.name.endsWith('.csv')) {
-            document.getElementById('upload-status').textContent = 'Please upload a CSV file only.';
+            showErrorAnimation('Please upload a CSV file only.');
             return;
         }
 
-        document.getElementById('upload-status').textContent = 'Analyzing... Please wait.';
+        showAnalyzingAnimation();
         
         try {
             // Upload the file and run analysis
@@ -63,10 +90,23 @@ document.addEventListener('DOMContentLoaded', function () {
             await displayResults();
             
         } catch (error) {
-            document.getElementById('upload-status').textContent = `Error: ${error.message}`;
+            showErrorAnimation(`Error: ${error.message}`);
             document.getElementById('analysis-results').classList.add('hidden');
         }
     });
+
+    function showSuccessAnimation() {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.innerHTML = `
+            <div class="success-animation">
+                <span class="success-text">Analysis completed successfully!</span>
+                <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                    <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+                    <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+                </svg>
+            </div>
+        `;
+    }
 
     async function displayResults() {
         try {
@@ -134,7 +174,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             document.getElementById('results-display').innerHTML = resultsHTML;
             document.getElementById('analysis-results').classList.remove('hidden');
-            document.getElementById('upload-status').textContent = 'Analysis completed successfully!';
+            showSuccessAnimation();
             
         } catch (error) {
             document.getElementById('upload-status').textContent = `Error displaying results: ${error.message}`;
