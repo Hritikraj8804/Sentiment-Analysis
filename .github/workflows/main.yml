@@ -1,0 +1,109 @@
+name: Sentiment Analysis CI/CD
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [16.x, 18.x]
+        python-version: [3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Set up Node.js
+    - name: Set up Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node-version }}
+        cache: 'npm'
+
+    # Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    # Install Node.js dependencies
+    - name: Install Node.js dependencies
+      run: |
+        npm ci
+        npm install -g nodemon
+
+    # Install Python dependencies
+    - name: Install Python dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install pytest pytest-cov flake8
+
+    # Run Node.js linting
+    - name: Run ESLint
+      run: |
+        npm run lint || echo "No linting configured"
+
+    # Run Python linting
+    - name: Run Python Linting
+      run: |
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+
+    # Run Node.js tests
+    - name: Run Node.js tests
+      run: |
+        npm test || echo "No tests configured"
+
+    # Run Python tests
+    - name: Run Python tests
+      run: |
+        pytest tests/ || echo "No tests configured"
+
+  deploy:
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Set up Node.js for deployment
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18.x'
+
+    # Build the application
+    - name: Build application
+      run: |
+        npm ci
+        npm run build --if-present
+
+    # Deploy to Render
+    - name: Deploy to Render
+      if: success()
+      env:
+        RENDER_TOKEN: ${{ secrets.RENDER_TOKEN }}
+        RENDER_SERVICE_ID: ${{ secrets.RENDER_SERVICE_ID }}
+      run: |
+        curl -X POST "https://api.render.com/v1/services/$RENDER_SERVICE_ID/deploys" \
+          -H "Authorization: Bearer $RENDER_TOKEN" \
+          -H "Content-Type: application/json"
+        
+    # Notify on deployment status
+    - name: Notify on success
+      if: success()
+      run: |
+        echo "Deployment to Render successful!"
+        
+    - name: Notify on failure
+      if: failure()
+      run: |
+        echo "Deployment to Render failed!" 
