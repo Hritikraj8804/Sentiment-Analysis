@@ -94,27 +94,27 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="viz-row">
                         <div class="viz-item">
                             <h3>Sentiment Distribution</h3>
-                            <img src="/public/sentiment_distribution.png" alt="Sentiment Distribution">
+                            <img src="/images/sentiment_distribution.png" alt="Sentiment Distribution">
                         </div>
                         <div class="viz-item">
                             <h3>Sentiment Categories</h3>
-                            <img src="/public/sentiment_categories.png" alt="Sentiment Categories">
+                            <img src="/images/sentiment_categories.png" alt="Sentiment Categories">
                         </div>
                     </div>
                     <div class="viz-row">
                         <div class="viz-item">
                             <h3>Word Cloud - Positive Reviews</h3>
-                            <img src="/public/wordcloud_positive_reviews.png" alt="Positive Reviews Word Cloud">
+                            <img src="/images/wordcloud_positive_reviews.png" alt="Positive Reviews Word Cloud">
                         </div>
                         <div class="viz-item">
                             <h3>Word Cloud - Negative Reviews</h3>
-                            <img src="/public/wordcloud_negative_reviews.png" alt="Negative Reviews Word Cloud">
+                            <img src="/images/wordcloud_negative_reviews.png" alt="Negative Reviews Word Cloud">
                         </div>
                     </div>
                     <div class="viz-row">
                         <div class="viz-item">
                             <h3>Subjectivity vs Polarity</h3>
-                            <img src="/public/subjectivity_polarity.png" alt="Subjectivity vs Polarity">
+                            <img src="/images/subjectivity_polarity.png" alt="Subjectivity vs Polarity">
                         </div>
                     </div>
                 </div>

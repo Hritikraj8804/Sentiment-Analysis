@@ -1,10 +1,31 @@
 const express = require('express');
 const path = require('path');
 const cors = require('cors');
+const fs = require('fs');
 const routes = require('./routes');
 
 const app = express();
 const port = 3000;
+
+// Function to clean up old analysis files on server start
+function cleanupOldFiles() {
+    const imageDir = path.join(__dirname, '..', 'public', 'images');
+    const summaryFile = path.join(__dirname, '..', 'public', 'analysis_summary.json');
+
+    // Clean up old images directory
+    if (fs.existsSync(imageDir)) {
+        fs.rmSync(imageDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(imageDir, { recursive: true });
+
+    // Clean up old summary file
+    if (fs.existsSync(summaryFile)) {
+        fs.unlinkSync(summaryFile);
+    }
+}
+
+// Clean up on server start
+cleanupOldFiles();
 
 // Enable CORS
 app.use(cors());
