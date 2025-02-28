@@ -1,20 +1,30 @@
 {
   "name": "sentiment-analysis",
   "version": "1.0.0",
-  "description": "This repository contains a comprehensive sentiment analysis project that includes a machine learning model for training and testing, and data analysis for sentiment analysis.",
+  "description": "A sentiment analysis tool for analyzing customer reviews",
   "main": "server/server.js",
   "scripts": {
     "start": "node server/server.js",
-    "dev": "nodemon server/server.js"
+    "dev": "nodemon server/server.js",
+    "test": "jest --coverage",
+    "lint": "eslint .",
+    "build": "echo 'No build step required'",
+    "heroku-postbuild": "npm install"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.2",
-    "multer": "^1.4.4",
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
     "cors": "^2.8.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "jest": "^29.7.0",
+    "supertest": "^6.3.3",
+    "eslint": "^8.56.0",
+    "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=16.0.0"
   }
 }
