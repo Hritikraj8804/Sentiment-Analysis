@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: sentiment-analysis
+    env: node
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+    healthCheckPath: /
+    autoDeploy: true 
