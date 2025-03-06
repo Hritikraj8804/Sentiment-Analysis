@@ -38,6 +38,19 @@ app.use(cors());
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, '..', 'public')));
 
+// Serve files from data directory
+app.get('/data/:filename', (req, res) => {
+    const dataDir = path.join(__dirname, '..', 'data');
+    const filePath = path.join(dataDir, req.params.filename);
+    
+    // Check if file exists and is a CSV
+    if (fs.existsSync(filePath) && filePath.endsWith('.csv')) {
+        res.download(filePath);
+    } else {
+        res.status(404).json({ error: 'File not found' });
+    }
+});
+
 // Basic health check endpoint
 app.get('/', (req, res) => {
     res.json({ status: 'ok' });

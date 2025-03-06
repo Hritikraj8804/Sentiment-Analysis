@@ -636,3 +636,16 @@ input[type="file"] {
     20%, 60% { transform: translateX(-5px); }
     40%, 80% { transform: translateX(5px); }
 }
+
+.sidebar ul li a.active {
+    color: #1a237e;
+    font-weight: bold;
+    background-color: rgba(26, 35, 126, 0.1);
+    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    display: block;
+}
+
+.sidebar ul li a.active:hover {
+    background-color: rgba(26, 35, 126, 0.2);
+}
