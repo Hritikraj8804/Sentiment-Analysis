@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentation - Sentiment Analysis Tool</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .docs-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        .docs-section {
+            background: #fff;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .docs-section h2 {
+            color: #1a237e;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+        }
+        .docs-section h3 {
+            color: #1a237e;
+            margin: 1.5rem 0 1rem;
+            font-size: 1.4rem;
+        }
+        .docs-section p {
+            line-height: 1.6;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+        .docs-section ul {
+            list-style-type: none;
+            padding-left: 1.5rem;
+        }
+        .docs-section ul li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+        .docs-section ul li:before {
+            content: "•";
+            color: #1a237e;
+            font-weight: bold;
+            position: absolute;
+            left: -1rem;
+        }
+        .code-block {
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 4px;
+            margin: 1rem 0;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+        .accordion {
+            background: #fff;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+        .accordion-header {
+            padding: 1rem;
+            background: #f5f5f5;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .accordion-header h3 {
+            margin: 0;
+            color: #1a237e;
+        }
+        .accordion-content {
+            padding: 1rem;
+            display: none;
+        }
+        .accordion-content.active {
+            display: block;
+        }
+        .accordion-icon {
+            transition: transform 0.3s ease;
+        }
+        .accordion-icon.active {
+            transform: rotate(180deg);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="hamburger">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2 class="sidebar-title">Sentiment Analysis</h2>
+                    <button class="close-sidebar">&times;</button>
+                </div>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="docs.html" class="active">Docs</a></li>
+                    <li><a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank">GitHub</a></li>
+                    <li><a href="data.html">Data</a></li>
+                </ul>
+            </div>
+            <div class="right-nav">
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact Us</a>
+                <a href="index.html" class="get-started-button">Get Started</a>
+            </div>
+        </nav>
+    </header>
+
+    <div class="docs-container">
+        <div class="docs-section">
+            <h2>Documentation</h2>
+            <p>Welcome to the Sentiment Analysis Tool documentation. This guide will help you understand and use the tool effectively.</p>
+        </div>
+
+        <div class="docs-section">
+            <h2>Getting Started</h2>
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Modern web browser (Chrome, Firefox, Safari, or Edge)</li>
+                <li>CSV files with the following format:
+                    <ul>
+                        <li>Column 1: "Review" (text content)</li>
+                        <li>Column 2: "Liked" (sentiment value: 1 for positive, 0 for negative, 2 for neutral)</li>
+                        <li>Optional: "Dataset" column to specify the dataset type</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+        <div class="docs-section">
+            <h2>Supported Datasets</h2>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Restaurant Reviews</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Default dataset with restaurant-specific reviews and binary sentiment classification.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Hotel Reviews</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Hotel-specific reviews with three-way sentiment classification (positive/negative/neutral).</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Movie Reviews</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Movie-specific reviews with three-way sentiment classification.</p>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Tech Reviews</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>Technology product reviews with three-way sentiment classification.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="docs-section">
+            <h2>Using the Application</h2>
+            <h3>Uploading Data</h3>
+            <ol>
+                <li>Click the "Upload CSV" button</li>
+                <li>Select your CSV file</li>
+                <li>Choose the dataset type (if not specified in the CSV)</li>
+                <li>Click "Analyze" to start the analysis</li>
+            </ol>
+
+            <h3>Understanding Results</h3>
+            <p>The analysis provides:</p>
+            <ul>
+                <li>Overall sentiment score</li>
+                <li>Sentiment distribution</li>
+                <li>Key phrases and words</li>
+                <li>Confidence scores</li>
+                <li>Dataset-specific insights</li>
+            </ul>
+        </div>
+
+        <div class="docs-section">
+            <h2>Best Practices</h2>
+            <h3>CSV File Format</h3>
+            <div class="code-block">
+Review,Liked,Dataset
+"Great experience!",1,"Restaurant"
+"Poor service.",0,"Hotel"
+"Average movie.",2,"Movie"
+            </div>
+
+            <h3>Tips for Best Results</h3>
+            <ul>
+                <li>Ensure your CSV file follows the required format</li>
+                <li>Use clear, concise text in reviews</li>
+                <li>Include the dataset type when analyzing multiple types of reviews</li>
+                <li>Keep review lengths reasonable (1-2 sentences recommended)</li>
+            </ul>
+        </div>
+
+        <div class="docs-section">
+            <h2>Troubleshooting</h2>
+            <h3>Common Issues</h3>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>File Upload Failed</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Check file format (must be CSV)</li>
+                        <li>Verify file size (max 10MB)</li>
+                        <li>Ensure proper column headers</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3>Analysis Errors</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <ul>
+                        <li>Verify text encoding (UTF-8 recommended)</li>
+                        <li>Check for special characters</li>
+                        <li>Ensure proper sentiment values (0, 1, or 2)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="docs-section">
+            <h2>Support</h2>
+            <p>For additional support:</p>
+            <ul>
+                <li>Check the FAQ section</li>
+                <li>Contact support team</li>
+                <li>Review the documentation</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // Sidebar functionality
+        const hamburger = document.querySelector('.hamburger');
+        const sidebar = document.querySelector('.sidebar');
+        const closeSidebar = document.querySelector('.close-sidebar');
+
+        hamburger.addEventListener('click', () => {
+            sidebar.classList.add('active');
+        });
+
+        closeSidebar.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+        });
+    </script>
+</body>
+</html>
