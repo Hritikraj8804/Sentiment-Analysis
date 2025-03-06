@@ -10,6 +10,8 @@ services:
         value: production
       - key: PORT
         value: 3000
+      - key: HOST
+        value: 0.0.0.0
     healthCheckPath: /
     autoDeploy: false # We're using deploy hooks instead
     branch: main
@@ -17,4 +19,8 @@ services:
     disk:
       name: uploads
       mountPath: /opt/render/project/src/uploads
-      sizeGB: 1 
+      sizeGB: 1
+    headers:
+      - path: /*
+        name: Cache-Control
+        value: no-cache 

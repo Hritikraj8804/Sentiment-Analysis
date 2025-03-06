@@ -55,6 +55,12 @@ app.use((err, req, res, next) => {
     });
 });
 
-app.listen(port, '0.0.0.0', () => {
-    console.log(`Server running at http://0.0.0.0:${port}`);
+// Start server
+const server = app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
+
+// Handle server errors
+server.on('error', (error) => {
+    console.error('Server error:', error);
 }); 
