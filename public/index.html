@@ -6,6 +6,46 @@
     <title>Sentiment Analysis Tool</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        .download-options {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+            justify-content: center;
+        }
+
+        .download-option {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem 1.25rem;
+            border-radius: 6px;
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            color: #1a237e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-option:hover {
+            background: #e9ecef;
+            transform: translateY(-2px);
+        }
+
+        .download-option i {
+            font-size: 1.1rem;
+        }
+
+        .download-option.pdf {
+            color: #dc3545;
+        }
+
+        .download-option.word {
+            color: #2b579a;
+        }
+    </style>
 </head>
 <body>
     <header>
@@ -73,8 +113,17 @@
             <h2>Analysis Results</h2>
             <div id="results-display">
             </div>
+            <div class="download-options">
+                <a href="#" class="download-option pdf" id="downloadPDF">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </a>
+                <a href="#" class="download-option word" id="downloadWord">
+                    <i class="fas fa-file-word"></i> Download Word
+                </a>
+            </div>
         </section>
     </div>
     <script src="script.js"></script>
+    <script src="js/download.js"></script>
 </body>
 </html>
