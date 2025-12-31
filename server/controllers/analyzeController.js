@@ -3,7 +3,11 @@ const fs = require('fs');
 const path = require('path');
 
 const analyzeController = async (req, res) => {
+    console.log('Analyze request received');
+    console.log('File:', req.file);
+
     if (!req.file) {
+        console.log('No file uploaded');
         return res.status(400).json({
             success: false,
             message: 'No file uploaded'
@@ -12,7 +16,9 @@ const analyzeController = async (req, res) => {
 
     try {
         // Run Python script
+        console.log('Starting Python analysis...');
         const pythonScript = path.join(process.cwd(), 'seti.py');
+        console.log('Python script path:', pythonScript);
         const pythonProcess = spawn('python', [pythonScript, req.file.path]);
         let pythonData = '';
         let pythonError = '';
@@ -55,7 +61,7 @@ const analyzeController = async (req, res) => {
                 if (err) console.error('Error deleting file:', err);
             });
         }
-        
+
         res.status(500).json({
             success: false,
             message: error.message

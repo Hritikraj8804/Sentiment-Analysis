@@ -1,12 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sentiment Analysis Tool</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <header>
         <nav>
@@ -23,7 +27,8 @@
                 <ul>
                     <li><a href="index.html" class="active">Home</a></li>
                     <li><a href="docs.html">Docs</a></li>
-                    <li><a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank">GitHub</a>
+                    </li>
                     <li><a href="data.html">Data</a></li>
                 </ul>
             </div>
@@ -62,9 +67,11 @@
             <p>Upload your CSV file containing reviews or feedback.</p>
             <form id="sentiment-form" enctype="multipart/form-data">
                 <label for="csv_file" class="file-upload-label">
+                    <i class="fas fa-file-csv"></i>
                     Choose CSV File
                     <input type="file" id="csv_file" name="csv_file" accept=".csv">
                 </label>
+                <div id="selected-file" class="selected-file-display"></div>
                 <button type="submit" class="submit-button">Analyze</button>
             </form>
             <div id="upload-status" class="status-message"></div>
@@ -77,4 +84,5 @@
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

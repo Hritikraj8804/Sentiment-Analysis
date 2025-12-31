@@ -1,0 +1,15 @@
+{
+    "watch": [
+        "server",
+        "public/**/*.js"
+    ],
+    "ignore": [
+        "public/images/*",
+        "public/analysis_summary.json",
+        "uploads/*",
+        "*.log",
+        "node_modules"
+    ],
+    "ext": "js,json",
+    "delay": "1000"
+}
