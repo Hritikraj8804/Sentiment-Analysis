@@ -1,68 +1,353 @@
-# Sentiment Analysis Project
+# 📊 Sentiment Analysis Tool - v2.0
 
-This repository contains a comprehensive sentiment analysis project that includes a machine learning model for training and testing, and data analysis for sentiment analysis.
+<div align="center">
 
-## Project Overview
+![Sentiment Analysis](https://img.shields.io/badge/Sentiment-Analysis-6366f1?style=for-the-badge)
+![Version](https://img.shields.io/badge/version-2.0.0-a855f7?style=for-the-badge)
+![License](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)
 
-The project aims to develop a sentiment analysis model that can classify reviews as positive or negative. The model is trained on a dataset of reviews and uses various preprocessing techniques such as lowercasing, removing stop words, lemmatization, and stemming to prepare the text data for modeling. The model is then deployed as an HTML app that takes user input reviews and provides sentiment analysis.
+**A modern, full-stack web application for analyzing sentiment in customer reviews and feedback**
 
-## Project Structure
+  [Installation](#installation) · [Documentation](./docs)
 
-The project structure is as follows:
+</div>
 
-📁 app: # This folder contains the HTML app for user input and sentiment analysis.<br /> 
-📁 data: # This folder contains the dataset of reviews used for training and testing the model.<br /> 
-📁 models: # This folder contains the machine learning model used for sentiment analysis.<br /> 
-📁 notebooks: # This folder contains Jupyter notebooks for data analysis and model development. <br /> 
-📁 preprocessing: # This folder contains scripts for preprocessing the text data. README.md: # This file provides an overview of the project.
+---
 
+## ✨ What's New in v2.0
 
-## How to Use
+- 🎨 **Complete UI/UX Redesign** - Modern, premium interface with glassmorphism effects
+- 📊 **Enhanced Analytics** - Beautiful visualizations with progress bars and stat cards
+- 🚀 **Improved Performance** - Optimized file handling and processing
+- 📱 **Fully Responsive** - Perfect experience on desktop, tablet, and mobile
+- 🎭 **Better UX** - File selection display, error handling, and smooth animations
+- 🔒 **Enhanced Security** - 10MB file size limits and improved validation
 
-To use the project, follow these steps:
+---
 
-1. **Clone** the repository to your local machine:
-```bash
-   https://github.com/Hritikraj8804/ML_practice.git
+## 🌟 Features
+
+### Core Functionality
+- **✅ CSV File Upload** - Drag & drop or click to upload review datasets
+- **📈 Sentiment Analysis** - Powered by TextBlob and NLTK for accurate results
+- **📊 Visual Analytics** - Interactive charts and word clouds
+- **💬 Example Reviews** - See most positive and negative reviews
+- **🎯 Real-time Processing** - Fast analysis with progress indicators
+
+### Analysis Insights
+- Overall sentiment score and classification
+- Sentiment distribution (Positive/Negative/Neutral)
+- Word clouds for positive and negative reviews
+- Subjectivity vs polarity analysis
+- Detailed sentiment breakdown with percentages
+
+### Modern UI/UX
+- Clean, intuitive interface with gradient themes
+- Smooth animations and micro-interactions
+- Glassmorphism design elements
+- Responsive grid layouts
+- Dark accents with vibrant colors
+
+---
+
+## 🏗️ Project Structure
+
 ```
-navigate to Intership_project folder and open it.
+Sentiment-Analysis/
+├── 📄 server/                    # Node.js/Express backend
+│   ├── controllers/             # Request handlers
+│   ├── middleware/              # Upload & validation middleware
+│   ├── routes.js               # API routes
+│   └── server.js               # Main server file
+│
+├── 🎨 public/                    # Frontend files
+│   ├── index.html              # Main application page
+│   ├── data.html               # Sample datasets page
+│   ├── docs.html               # Documentation page
+│   ├── style.css               # Modern CSS with design system
+│   ├── script.js               # Client-side JavaScript
+│   └── images/                 # Generated analysis visualizations
+│
+├── 🐍 seti.py                    # Python ML analysis script
+├── 📊 data/                      # Sample CSV datasets
+│   ├── Reviews.csv             # Restaurant reviews (1000+)
+│   ├── hotel_reviews.csv       # Hotel reviews
+│   ├── movie_reviews.csv       # Movie reviews
+│   └── tech_reviews.csv        # Tech product reviews
+│
+├── 🧪 tests/                     # Test files
+│   ├── server.test.js          # Node.js tests
+│   └── test_seti.py            # Python tests
+│
+├── 📝 requirements.txt           # Python dependencies
+├── 📦 package.json              # Node.js dependencies
+├── ⚙️ nodemon.json               # Development server config
+└── 📖 README.md                 # This file
+```
 
-2. Open the ```Internship_Project``` folder and run ```Sentiment_analysis.ipynb``` in a Jupyter Notebook.
+---
 
-3. Enter a review in the input field and click the "Sumbit" button.
+## 🚀 Quick Start
 
-4. The app will display the sentiment analysis of the review.
+### Prerequisites
 
-## Model Development
-The machine learning model used for sentiment analysis is a Multinomial Naive Bayes classifier. The model was trained on a dataset of reviews using TF-IDF vectorization to transform the text into numerical features. The performance of the model was evaluated using the accuracy score and a detailed classification report.
+- **Node.js** >= 18.0.0
+- **Python** >= 3.8
 
-## Preprocessing Steps
-**Lowercasing**: Converts all text to lowercase.<br /> 
-Removing stop words: Common words (e.g., "the", "is") are removed as they do not contribute much to sentiment.<br /> 
-**Lemmatization**: Converts words to their base form (e.g., "running" becomes "run").<br /> 
-**Stemming**: Reduces words to their root form (e.g., "fishing" becomes "fish").<br /> 
+### Installation
 
-## Data Analysis
-The data analysis was conducted using Jupyter notebooks. These notebooks contain scripts for:
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Hritikraj8804/Sentiment-Analysis.git
+   cd Sentiment-Analysis
+   ```
 
-**Data preprocessing**: Cleaning and preparing the dataset for model training.<br /> 
-**Feature engineering**: Extracting useful features from the text data.<br /> 
-**Model development**: Implementing and fine-tuning the sentiment analysis model.<br /> 
+2. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
 
-## Technologies Used
-The project utilizes the following technologies:
+3. **Install Python dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-**Python**: For machine learning model development and data analysis.<br /> 
-**Jupyter Notebooks**: For exploring and analyzing the dataset.<br /> 
-**TF-IDF Vectorization**: For converting text data into numerical form.<br /> 
-**Multinomial Naive Bayes**: A machine learning algorithm used for sentiment analysis.<br /> 
+4. **Download NLTK data** (first time only)
+   ```python
+   python -c "import nltk; nltk.download('punkt'); nltk.download('stopwords')"
+   ```
 
-## License
-This project is licensed under the MIT License.
+### Running the Application
 
-## Contributing
-Contributions to the project are welcome! If you'd like to contribute, please follow these steps:<br /> 
-Fork the repository.<br /> 
-Create a new branch for your feature or bug fix.<br /> 
-Submit a pull request with your changes.
-# We appreciate your contribution!
+**Development mode:**
+```bash
+npm run dev
+```
+
+**Production mode:**
+```bash
+npm start
+```
+
+The application will be available at **http://localhost:3000**
+
+---
+
+## 📖 Usage
+
+### 1. Upload Your Data
+
+- Click **"Choose CSV File"** button
+- Select a CSV file with reviews (max 10MB)
+- See the selected filename and size displayed
+- Click **"Analyze"** to start processing
+
+### 2. CSV Format
+
+Your CSV file should have at least one column with text data:
+
+```csv
+Review,Liked
+"Great product, highly recommend!",1
+"Poor quality, disappointed.",0
+"It's okay, nothing special.",2
+```
+
+**Supported sentiment values:**
+- `1` - Positive
+- `0` - Negative  
+- `2` - Neutral (optional)
+
+### 3. View Results
+
+The analysis provides:
+- **Overall Sentiment** - Classified as Positive, Negative, or Neutral
+- **Statistics** - Total reviews, sentiment breakdown with percentages
+- **Visualizations** - Distribution charts, pie charts, word clouds
+- **Example Reviews** - Most positive and most negative examples
+
+---
+
+## 🛠️ Technologies Used
+
+### Backend
+- **Node.js** - Runtime environment
+- **Express.js** - Web framework
+- **Multer** - File upload handling
+- **CORS** - Cross-origin resource sharing
+
+### Frontend
+- **HTML5** - Semantic structure
+- **CSS3** - Modern styling with custom properties
+- **Vanilla JavaScript** - ES6+ features
+- **Font Awesome** - Icons
+- **Google Fonts** - Inter & Poppins typography
+
+### Machine Learning / NLP
+- **Python 3** - Analysis engine
+- **TextBlob** - Sentiment analysis
+- **NLTK** - Natural language processing
+- **pandas** - Data manipulation
+- **matplotlib** - Visualization generation
+- **WordCloud** - Word cloud creation
+
+### Development
+- **nodemon** - Auto-restart development server
+- **Jest** - JavaScript testing
+- **pytest** - Python testing
+- **ESLint** - Code linting
+
+---
+
+## 📊 API Endpoints
+
+### POST `/api/analyze`
+Upload and analyze a CSV file
+
+**Request:**
+- Content-Type: `multipart/form-data`
+- Body: `csv_file` (file)
+
+**Response:**
+```json
+{
+  "success": true,
+  "message": "Analysis completed successfully"
+}
+```
+
+### GET `/data/:filename`
+Download sample dataset files
+
+---
+
+## 🎨 Design System
+
+### Color Palette
+- **Primary**: Purple/Blue gradient (`#6366f1` to `#a855f7`)
+- **Success**: Green (`#22c55e`)
+- **Error**: Red (`#ef4444`)
+- **Warning**: Amber (`#f59e0b`)
+
+### Typography
+- **Body**: Inter (400, 500, 600, 700)
+- **Headings**: Poppins (600, 700, 800)
+
+### Components
+- Glassmorphism cards with backdrop blur
+- Smooth animations (200-300ms cubic-bezier)
+- Rounded corners (0.5rem to 1.5rem)
+- Elevated shadows with multiple layers
+
+---
+
+## 🧪 Testing
+
+### Run JavaScript tests:
+```bash
+npm test
+```
+
+### Run Python tests:
+```bash
+pytest
+```
+
+### Run linting:
+```bash
+npm run lint
+```
+
+---
+
+## 📝 Contributing
+
+Contributions are welcome! Here's how:
+
+1. **Fork** the repository
+2. **Create** a feature branch
+   ```bash
+   git checkout -b feature/amazing-feature
+   ```
+3. **Commit** your changes
+   ```bash
+   git commit -m "feat: add amazing feature"
+   ```
+4. **Push** to your branch
+   ```bash
+   git push origin feature/amazing-feature
+   ```
+5. **Open** a Pull Request
+
+### Commit Convention
+- `feat:` - New feature
+- `fix:` - Bug fix
+- `docs:` - Documentation changes
+- `style:` - Code style changes
+- `refactor:` - Code refactoring
+- `test:` - Test updates
+- `chore:` - Maintenance tasks
+
+---
+
+## 🐛 Troubleshooting
+
+### File Upload Issues
+- Ensure file is `.csv` format
+- Check file size is under 10MB
+- Verify CSV has proper column headers
+
+### Analysis Errors
+- Use UTF-8 encoding for special characters
+- Ensure at least one text column exists
+- Check for malformed CSV data
+
+### Server Issues
+- Kill existing Node processes: `killall node` (Mac/Linux) or `Stop-Process -Name node -Force` (Windows)
+- Clear uploads folder if needed
+- Restart with `npm run dev`
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
+## 👨‍💻 Author
+
+**Hritikraj**
+- GitHub: [@Hritikraj8804](https://github.com/Hritikraj8804)
+- Project: [Sentiment-Analysis](https://github.com/Hritikraj8804/Sentiment-Analysis)
+
+---
+
+## 🙏 Acknowledgments
+
+- TextBlob for sentiment analysis capabilities
+- The open-source community for amazing tools and libraries
+- All contributors who have helped improve this project
+
+---
+
+## 📸 Screenshots
+
+### Main Dashboard
+![Dashboard](./public/intro.gif)
+
+### Analysis Results
+Beautiful visualizations with:
+- Sentiment distribution charts
+- Category breakdown pie charts  
+- Positive & negative word clouds
+- Subjectivity analysis
+- Example reviews with badges
+
+<div align="center">
+
+**⭐ Star this repo if you found it helpful!**
+
+Made with ❤️ by Hritikraj | [Report Bug](https://github.com/Hritikraj8804/Sentiment-Analysis/issues) | [Request Feature](https://github.com/Hritikraj8804/Sentiment-Analysis/issues)
+
+</div>
