@@ -55,12 +55,58 @@ document.addEventListener('DOMContentLoaded', function () {
         `;
     }
 
+    function clearStatusMessage() {
+        const uploadStatus = document.getElementById('upload-status');
+        uploadStatus.innerHTML = '';
+    }
+
+    function formatFileSize(bytes) {
+        if (bytes === 0) return '0 Bytes';
+        const k = 1024;
+        const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+        const i = Math.floor(Math.log(bytes) / Math.log(k));
+        return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+    }
+
+    function showSelectedFile(file) {
+        const selectedFileDiv = document.getElementById('selected-file');
+        selectedFileDiv.innerHTML = `
+            <i class="fas fa-file-csv"></i>
+            <span class="file-name">${file.name}</span>
+            <span class="file-size">${formatFileSize(file.size)}</span>
+            <button type="button" class="remove-file" title="Remove file">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        selectedFileDiv.classList.add('active');
+
+        // Add remove file functionality
+        const removeBtn = selectedFileDiv.querySelector('.remove-file');
+        removeBtn.addEventListener('click', function () {
+            document.getElementById('csv_file').value = '';
+            selectedFileDiv.classList.remove('active');
+            selectedFileDiv.innerHTML = '';
+        });
+    }
+
+    // Clear error and show filename when file is selected
+    const fileInput = document.getElementById('csv_file');
+    if (fileInput) {
+        fileInput.addEventListener('change', function () {
+            if (this.files && this.files.length > 0) {
+                clearStatusMessage();
+                showSelectedFile(this.files[0]);
+            }
+        });
+    }
+
+
     document.getElementById('sentiment-form').addEventListener('submit', async (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(document.getElementById('sentiment-form'));
         const file = formData.get('csv_file');
-        
+
         if (!file) {
             showErrorAnimation('Please select a file first!');
             return;
@@ -72,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         showAnalyzingAnimation();
-        
+
         try {
             // Upload the file and run analysis
             const response = await fetch('/api/analyze', {
@@ -81,14 +127,14 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             const result = await response.json();
-            
+
             if (!result.success) {
                 throw new Error(result.message);
             }
 
             // Display results
             await displayResults();
-            
+
         } catch (error) {
             showErrorAnimation(`Error: ${error.message}`);
             document.getElementById('analysis-results').classList.add('hidden');
@@ -113,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Fetch analysis summary
             const response = await fetch('/analysis_summary.json');
             const summary = await response.json();
-            
+
             // Create results HTML
             let resultsHTML = `
                 <div class="summary-stats">
@@ -123,9 +169,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     <div class="sentiment-breakdown">
                         <h4>Sentiment Breakdown:</h4>
                         <ul>
-                            ${Object.entries(summary.sentiment_counts).map(([category, count]) => 
-                                `<li>${category}: ${count}</li>`
-                            ).join('')}
+                            ${Object.entries(summary.sentiment_counts).map(([category, count]) =>
+                `<li>${category}: ${count}</li>`
+            ).join('')}
                         </ul>
                     </div>
                 </div>
@@ -171,11 +217,11 @@ document.addEventListener('DOMContentLoaded', function () {
                     </div>
                 </div>
             `;
-            
+
             document.getElementById('results-display').innerHTML = resultsHTML;
             document.getElementById('analysis-results').classList.remove('hidden');
             showSuccessAnimation();
-            
+
         } catch (error) {
             document.getElementById('upload-status').textContent = `Error displaying results: ${error.message}`;
         }
