@@ -7,206 +7,259 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .data-container {
-            max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+        .data-page-wrapper {
+            padding: var(--spacing-3xl) var(--spacing-xl);
         }
 
         .data-header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem 0;
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            border-radius: 12px;
-            color: white;
+            margin-bottom: var(--spacing-3xl);
+            padding: var(--spacing-3xl) var(--spacing-xl);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            max-width: 1200px;
+            margin: 0 auto var(--spacing-3xl);
         }
 
         .data-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            font-weight: 700;
-            color: #ffffff;
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
         }
 
         .data-header p {
-            font-size: 1.1rem;
-            max-width: 800px;
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
             margin: 0 auto;
-            opacity: 0.9;
+            line-height: 1.8;
         }
 
         .dataset-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 2rem;
-            margin-top: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: var(--spacing-2xl);
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-xl);
         }
 
         .dataset-card {
-            background: #fff;
-            border-radius: 12px;
-            padding: 2rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(99, 102, 241, 0.1);
+            transition: all var(--transition-slow);
             display: flex;
             flex-direction: column;
-            border: 1px solid #e0e0e0;
-            gap: 1.5rem;
+            gap: var(--spacing-lg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dataset-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-600), var(--accent-600));
         }
 
         .dataset-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-            border-color: #1a237e;
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-2xl);
+            border-color: var(--primary-300);
         }
 
-        .dataset-card h3 {
-            color: #1a237e;
-            font-size: 1.5rem;
-            margin: 0;
+        .card-header {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
-            font-weight: 600;
+            gap: var(--spacing-lg);
         }
 
-        .dataset-card h3 i {
-            font-size: 1.4rem;
-            color: #283593;
-        }
-
-        .dataset-card p {
-            color: #555;
-            margin: 0;
-            line-height: 1.6;
-            flex-grow: 1;
-        }
-
-        .dataset-info {
-            background: #f8f9fa;
-            padding: 1.25rem;
-            border-radius: 8px;
-            margin: 0;
-            border: 1px solid #e9ecef;
-        }
-
-        .dataset-info ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .dataset-info li {
+        .card-icon {
+            width: 60px;
+            height: 60px;
             display: flex;
-            justify-content: space-between;
-            padding: 0.75rem 0;
-            border-bottom: 1px solid #e9ecef;
-            font-size: 0.95rem;
-        }
-
-        .dataset-info li:last-child {
-            border-bottom: none;
-        }
-
-        .dataset-info li span:first-child {
-            color: #666;
-            font-weight: 500;
-        }
-
-        .dataset-info li span:last-child {
-            color: #1a237e;
-            font-weight: 600;
-        }
-
-        .download-button {
-            display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 0.75rem;
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
+            background: linear-gradient(135deg, var(--primary-500), var(--accent-500));
+            border-radius: var(--radius-xl);
             color: white;
-            padding: 1rem;
-            border-radius: 8px;
-            text-decoration: none;
+            font-size: 1.75rem;
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-title {
+            flex: 1;
+        }
+
+        .card-title h3 {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin: 0 0 var(--spacing-xs) 0;
+        }
+
+        .card-title .card-category {
+            font-size: 0.875rem;
+            color: var(--primary-600);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .card-description {
+            color: var(--gray-600);
+            line-height: 1.7;
             font-size: 1rem;
+        }
+
+        .dataset-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--gray-50), var(--primary-50));
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
+        }
+
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-xs);
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--gray-500);
             font-weight: 500;
-            transition: all 0.3s ease;
-            border: none;
-            cursor: pointer;
-            margin-top: auto;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        .download-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(26, 35, 126, 0.2);
-        }
-
-        .download-button i {
-            font-size: 1.2rem;
+        .stat-value {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-700);
         }
 
         .preview-section {
-            margin: 0;
-            padding: 1.25rem;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border: 1px solid #e9ecef;
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--gray-200);
         }
 
         .preview-section h4 {
-            color: #1a237e;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            font-family: var(--font-display);
+            font-size: 1.125rem;
             font-weight: 600;
+            color: var(--gray-800);
+            margin: 0 0 var(--spacing-md) 0;
+            padding-bottom: var(--spacing-sm);
+            border-bottom: 2px solid var(--primary-200);
         }
 
         .preview-table {
             width: 100%;
-            border-collapse: collapse;
-            margin-top: 1rem;
-            background: white;
-            border-radius: 6px;
+            border-collapse: separate;
+            border-spacing: 0;
             overflow: hidden;
+            border-radius: var(--radius-md);
         }
 
         .preview-table th,
         .preview-table td {
-            padding: 0.75rem;
+            padding: var(--spacing-md);
             text-align: left;
-            border-bottom: 1px solid #e9ecef;
         }
 
         .preview-table th {
-            background: #f1f3f5;
-            color: #1a237e;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            color: white;
             font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.875rem;
+            letter-spacing: 0.5px;
         }
 
-        .preview-table tr:hover {
-            background: #f8f9fa;
+        .preview-table th:first-child {
+            border-top-left-radius: var(--radius-md);
+        }
+
+        .preview-table th:last-child {
+            border-top-right-radius: var(--radius-md);
+        }
+
+        .preview-table tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+
+        .preview-table td {
+            color: var(--gray-700);
+            border-bottom: 1px solid var(--gray-200);
         }
 
         .preview-table td:last-child {
-            font-weight: 500;
-            color: #1a237e;
+            font-weight: 700;
+            color: var(--primary-600);
         }
 
-        @media (max-width: 768px) {
+        .download-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            color: white;
+            padding: var(--spacing-lg) var(--spacing-2xl);
+            border-radius: var(--radius-full);
+            text-decoration: none;
+            font-size: 1.0625rem;
+            font-weight: 600;
+            transition: all var(--transition-base);
+            border: none;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            font-family: var(--font-primary);
+        }
+
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl), var(--shadow-glow);
+        }
+
+        .download-button i {
+            font-size: 1.25rem;
+        }
+
+        @media (max-width: 1024px) {
             .dataset-grid {
                 grid-template-columns: 1fr;
             }
+        }
 
+        @media (max-width: 768px) {
             .data-header h1 {
                 font-size: 2rem;
             }
 
-            .data-header {
-                padding: 1.5rem 1rem;
-            }
-
-            .dataset-card {
-                padding: 1.5rem;
+            .dataset-stats {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -239,168 +292,256 @@
         </nav>
     </header>
 
-    <div class="data-container">
+    <div class="data-page-wrapper">
         <div class="data-header">
-            <h1>Sample Datasets</h1>
+            <h1>📊 Sample Datasets</h1>
             <p>Download our curated datasets to get started with sentiment analysis. Each dataset is carefully crafted to represent different domains and sentiment classification approaches.</p>
         </div>
 
         <div class="dataset-grid">
+            <!-- Restaurant Reviews -->
             <div class="dataset-card">
-                <h3><i class="fas fa-utensils"></i> Restaurant Reviews</h3>
-                <p>Default dataset containing restaurant reviews with binary sentiment classification (positive/negative).</p>
-                <div class="dataset-info">
-                    <ul>
-                        <li><span>Format:</span><span>CSV</span></li>
-                        <li><span>Size:</span><span>61KB</span></li>
-                        <li><span>Records:</span><span>1000+</span></li>
-                        <li><span>Classification:</span><span>Binary</span></li>
-                    </ul>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-utensils"></i>
+                    </div>
+                    <div class="card-title">
+                        <div class="card-category">Default Dataset</div>
+                        <h3>Restaurant Reviews</h3>
+                    </div>
                 </div>
+                <p class="card-description">Comprehensive restaurant reviews dataset with binary sentiment classification (positive/negative). Perfect for getting started with sentiment analysis.</p>
+                
+                <div class="dataset-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Format</span>
+                        <span class="stat-value">CSV</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Size</span>
+                        <span class="stat-value">61 KB</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Records</span>
+                        <span class="stat-value">1,000+</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Classification</span>
+                        <span class="stat-value">Binary</span>
+                    </div>
+                </div>
+
                 <div class="preview-section">
-                    <h4>Sample Data</h4>
+                    <h4>📋 Sample Data</h4>
                     <table class="preview-table">
                         <thead>
                             <tr>
                                 <th>Review</th>
-                                <th>Liked</th>
+                                <th>Sentiment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td>"Great food and service!"</td>
-                                <td>1</td>
+                                <td>Positive</td>
                             </tr>
                             <tr>
                                 <td>"Poor quality food."</td>
-                                <td>0</td>
+                                <td>Negative</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <a href="/data/Reviews.csv" download class="download-button">
                     <i class="fas fa-download"></i> Download Dataset
                 </a>
             </div>
 
+            <!-- Hotel Reviews -->
             <div class="dataset-card">
-                <h3><i class="fas fa-hotel"></i> Hotel Reviews</h3>
-                <p>Hotel-specific reviews with three-way sentiment classification (positive/negative/neutral).</p>
-                <div class="dataset-info">
-                    <ul>
-                        <li><span>Format:</span><span>CSV</span></li>
-                        <li><span>Size:</span><span>4.2KB</span></li>
-                        <li><span>Records:</span><span>141</span></li>
-                        <li><span>Classification:</span><span>Three-way</span></li>
-                    </ul>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-hotel"></i>
+                    </div>
+                    <div class="card-title">
+                        <div class="card-category">Hospitality</div>
+                        <h3>Hotel Reviews</h3>
+                    </div>
                 </div>
+                <p class="card-description">Hotel-specific reviews with three-way sentiment classification (positive/neutral/negative). Ideal for hospitality industry analysis.</p>
+                
+                <div class="dataset-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Format</span>
+                        <span class="stat-value">CSV</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Size</span>
+                        <span class="stat-value">4.2 KB</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Records</span>
+                        <span class="stat-value">141</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Classification</span>
+                        <span class="stat-value">Three-way</span>
+                    </div>
+                </div>
+
                 <div class="preview-section">
-                    <h4>Sample Data</h4>
+                    <h4>📋 Sample Data</h4>
                     <table class="preview-table">
                         <thead>
                             <tr>
                                 <th>Review</th>
-                                <th>Liked</th>
+                                <th>Sentiment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>"Beautiful room with amazing view!"</td>
-                                <td>1</td>
+                                <td>"Beautiful room with view!"</td>
+                                <td>Positive</td>
                             </tr>
                             <tr>
-                                <td>"Room was okay, nothing special."</td>
-                                <td>2</td>
+                                <td>"Room was okay."</td>
+                                <td>Neutral</td>
                             </tr>
                             <tr>
-                                <td>"Poor service and dirty rooms."</td>
-                                <td>0</td>
+                                <td>"Poor service."</td>
+                                <td>Negative</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <a href="/data/hotel_reviews.csv" download class="download-button">
                     <i class="fas fa-download"></i> Download Dataset
                 </a>
             </div>
 
+            <!-- Movie Reviews -->
             <div class="dataset-card">
-                <h3><i class="fas fa-film"></i> Movie Reviews</h3>
-                <p>Movie-specific reviews with three-way sentiment classification for comprehensive analysis.</p>
-                <div class="dataset-info">
-                    <ul>
-                        <li><span>Format:</span><span>CSV</span></li>
-                        <li><span>Size:</span><span>3.9KB</span></li>
-                        <li><span>Records:</span><span>128</span></li>
-                        <li><span>Classification:</span><span>Three-way</span></li>
-                    </ul>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="card-title">
+                        <div class="card-category">Entertainment</div>
+                        <h3>Movie Reviews</h3>
+                    </div>
                 </div>
+                <p class="card-description">Movie-specific reviews with three-way sentiment classification for comprehensive entertainment industry analysis.</p>
+                
+                <div class="dataset-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Format</span>
+                        <span class="stat-value">CSV</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Size</span>
+                        <span class="stat-value">3.9 KB</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Records</span>
+                        <span class="stat-value">128</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Classification</span>
+                        <span class="stat-value">Three-way</span>
+                    </div>
+                </div>
+
                 <div class="preview-section">
-                    <h4>Sample Data</h4>
+                    <h4>📋 Sample Data</h4>
                     <table class="preview-table">
                         <thead>
                             <tr>
                                 <th>Review</th>
-                                <th>Liked</th>
+                                <th>Sentiment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>"Amazing acting and direction!"</td>
-                                <td>1</td>
+                                <td>"Amazing acting!"</td>
+                                <td>Positive</td>
                             </tr>
                             <tr>
-                                <td>"Decent movie, nothing special."</td>
-                                <td>2</td>
+                                <td>"Decent movie."</td>
+                                <td>Neutral</td>
                             </tr>
                             <tr>
-                                <td>"Terrible plot and acting."</td>
-                                <td>0</td>
+                                <td>"Terrible plot."</td>
+                                <td>Negative</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <a href="/data/movie_reviews.csv" download class="download-button">
                     <i class="fas fa-download"></i> Download Dataset
                 </a>
             </div>
 
+            <!-- Tech Reviews -->
             <div class="dataset-card">
-                <h3><i class="fas fa-laptop"></i> Tech Reviews</h3>
-                <p>Technology product reviews with three-way sentiment classification for detailed analysis.</p>
-                <div class="dataset-info">
-                    <ul>
-                        <li><span>Format:</span><span>CSV</span></li>
-                        <li><span>Size:</span><span>3.3KB</span></li>
-                        <li><span>Records:</span><span>121</span></li>
-                        <li><span>Classification:</span><span>Three-way</span></li>
-                    </ul>
+                <div class="card-header">
+                    <div class="card-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <div class="card-title">
+                        <div class="card-category">Technology</div>
+                        <h3>Tech Reviews</h3>
+                    </div>
                 </div>
+                <p class="card-description">Technology product reviews with three-way sentiment classification for detailed tech industry analysis.</p>
+                
+                <div class="dataset-stats">
+                    <div class="stat-item">
+                        <span class="stat-label">Format</span>
+                        <span class="stat-value">CSV</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Size</span>
+                        <span class="stat-value">3.3 KB</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Records</span>
+                        <span class="stat-value">121</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Classification</span>
+                        <span class="stat-value">Three-way</span>
+                    </div>
+                </div>
+
                 <div class="preview-section">
-                    <h4>Sample Data</h4>
+                    <h4>📋 Sample Data</h4>
                     <table class="preview-table">
                         <thead>
                             <tr>
                                 <th>Review</th>
-                                <th>Liked</th>
+                                <th>Sentiment</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>"Great performance and features!"</td>
-                                <td>1</td>
+                                <td>"Great performance!"</td>
+                                <td>Positive</td>
                             </tr>
                             <tr>
-                                <td>"Average product, works fine."</td>
-                                <td>2</td>
+                                <td>"Average product."</td>
+                                <td>Neutral</td>
                             </tr>
                             <tr>
-                                <td>"Poor quality and unreliable."</td>
-                                <td>0</td>
+                                <td>"Poor quality."</td>
+                                <td>Negative</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <a href="/data/tech_reviews.csv" download class="download-button">
                     <i class="fas fa-download"></i> Download Dataset
                 </a>
@@ -408,19 +549,6 @@
         </div>
     </div>
 
-    <script>
-        // Sidebar functionality
-        const hamburger = document.querySelector('.hamburger');
-        const sidebar = document.querySelector('.sidebar');
-        const closeSidebar = document.querySelector('.close-sidebar');
-
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.add('active');
-        });
-
-        closeSidebar.addEventListener('click', () => {
-            sidebar.classList.remove('active');
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

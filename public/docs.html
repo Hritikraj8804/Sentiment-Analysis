@@ -1,95 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Documentation - Sentiment Analysis Tool</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-        .docs-container {
+        .docs-wrapper {
             max-width: 1200px;
-            margin: 2rem auto;
-            padding: 0 1rem;
+            margin: var(--spacing-3xl) auto;
+            padding: 0 var(--spacing-xl);
         }
+
+        .docs-hero {
+            text-align: center;
+            padding: var(--spacing-3xl);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            margin-bottom: var(--spacing-3xl);
+        }
+
+        .docs-hero h1 {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--spacing-md);
+        }
+
+        .docs-hero p {
+            font-size: 1.125rem;
+            color: var(--gray-600);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
         .docs-section {
-            background: #fff;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius-2xl);
+            padding: var(--spacing-2xl);
+            margin-bottom: var(--spacing-2xl);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(99, 102, 241, 0.1);
         }
+
         .docs-section h2 {
-            color: #1a237e;
-            margin-bottom: 1.5rem;
-            font-size: 1.8rem;
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: var(--spacing-xl);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 3px solid var(--primary-200);
         }
+
         .docs-section h3 {
-            color: #1a237e;
-            margin: 1.5rem 0 1rem;
-            font-size: 1.4rem;
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--gray-700);
+            margin: var(--spacing-xl) 0 var(--spacing-md);
         }
+
         .docs-section p {
-            line-height: 1.6;
-            margin-bottom: 1rem;
-            color: #333;
+            line-height: 1.8;
+            color: var(--gray-600);
+            margin-bottom: var(--spacing-md);
         }
-        .docs-section ul {
-            list-style-type: none;
-            padding-left: 1.5rem;
+
+        .docs-section ul,
+        .docs-section ol {
+            padding-left: var(--spacing-xl);
+            margin-bottom: var(--spacing-lg);
         }
-        .docs-section ul li {
-            margin-bottom: 0.5rem;
-            position: relative;
+
+        .docs-section ul li,
+        .docs-section ol li {
+            margin-bottom: var(--spacing-sm);
+            color: var(--gray-600);
+            line-height: 1.8;
         }
-        .docs-section ul li:before {
-            content: "•";
-            color: #1a237e;
-            font-weight: bold;
-            position: absolute;
-            left: -1rem;
+
+        .docs-section ul li::marker {
+            color: var(--primary-600);
         }
+
         .code-block {
-            background: #f8f9fa;
-            padding: 1rem;
-            border-radius: 4px;
-            margin: 1rem 0;
-            font-family: monospace;
+            background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            margin: var(--spacing-lg) 0;
+            font-family: 'Courier New', monospace;
             white-space: pre-wrap;
+            color: #10b981;
+            font-size: 0.9375rem;
+            line-height: 1.6;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--gray-700);
         }
+
+        /* Accordion Styles */
         .accordion {
-            background: #fff;
-            border-radius: 8px;
-            margin-bottom: 1rem;
+            background: white;
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--spacing-md);
             overflow: hidden;
+            border: 1px solid var(--gray-200);
+            transition: all var(--transition-base);
         }
+
+        .accordion:hover {
+            border-color: var(--primary-300);
+            box-shadow: var(--shadow-sm);
+        }
+
         .accordion-header {
-            padding: 1rem;
-            background: #f5f5f5;
+            padding: var(--spacing-lg);
+            background: linear-gradient(135deg, var(--gray-50), white);
             cursor: pointer;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            transition: all var(--transition-base);
+            user-select: none;
         }
+
+        .accordion-header:hover {
+            background: linear-gradient(135deg, var(--primary-50), var(--primary-100));
+        }
+
+        .accordion-header.active {
+            background: linear-gradient(135deg, var(--primary-600), var(--accent-600));
+        }
+
         .accordion-header h3 {
             margin: 0;
-            color: #1a237e;
+            font-family: var(--font-display);
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--gray-800);
+            transition: color var(--transition-base);
         }
-        .accordion-content {
-            padding: 1rem;
-            display: none;
+
+        .accordion-header.active h3 {
+            color: white;
         }
-        .accordion-content.active {
-            display: block;
-        }
+
         .accordion-icon {
-            transition: transform 0.3s ease;
+            font-size: 1.25rem;
+            color: var(--primary-600);
+            transition: all var(--transition-base);
         }
-        .accordion-icon.active {
+
+        .accordion-header.active .accordion-icon {
             transform: rotate(180deg);
+            color: white;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+            background: white;
+        }
+
+        .accordion-content.active {
+            max-height: 500px;
+            padding: var(--spacing-lg);
+            border-top: 1px solid var(--gray-200);
+        }
+
+        .accordion-content p {
+            margin: 0;
+        }
+
+        .accordion-content ul {
+            margin: var(--spacing-md) 0 0 0;
+        }
+
+        @media (max-width: 768px) {
+            .docs-hero h1 {
+                font-size: 2rem;
+            }
+
+            .docs-section h2 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
     <header>
         <nav>
@@ -106,7 +217,8 @@
                 <ul>
                     <li><a href="index.html">Home</a></li>
                     <li><a href="docs.html" class="active">Docs</a></li>
-                    <li><a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank">GitHub</a>
+                    </li>
                     <li><a href="data.html">Data</a></li>
                 </ul>
             </div>
@@ -118,14 +230,15 @@
         </nav>
     </header>
 
-    <div class="docs-container">
-        <div class="docs-section">
-            <h2>Documentation</h2>
-            <p>Welcome to the Sentiment Analysis Tool documentation. This guide will help you understand and use the tool effectively.</p>
+    <div class="docs-wrapper">
+        <div class="docs-hero">
+            <h1>📚 Documentation</h1>
+            <p>Welcome to the Sentiment Analysis Tool documentation. This comprehensive guide will help you understand
+                and use the tool effectively.</p>
         </div>
 
         <div class="docs-section">
-            <h2>Getting Started</h2>
+            <h2>🚀 Getting Started</h2>
             <h3>Prerequisites</h3>
             <ul>
                 <li>Modern web browser (Chrome, Firefox, Safari, or Edge)</li>
@@ -140,140 +253,199 @@
         </div>
 
         <div class="docs-section">
-            <h2>Supported Datasets</h2>
+            <h2>📊 Supported Datasets</h2>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>Restaurant Reviews</h3>
+                    <h3><i class="fas fa-utensils"></i> Restaurant Reviews</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
                     <p>Default dataset with restaurant-specific reviews and binary sentiment classification.</p>
+                    <ul>
+                        <li><strong>Format:</strong> CSV</li>
+                        <li><strong>Records:</strong> 1,000+</li>
+                        <li><strong>Best for:</strong> General sentiment analysis training</li>
+                    </ul>
                 </div>
             </div>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>Hotel Reviews</h3>
+                    <h3><i class="fas fa-hotel"></i> Hotel Reviews</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
                     <p>Hotel-specific reviews with three-way sentiment classification (positive/negative/neutral).</p>
+                    <ul>
+                        <li><strong>Format:</strong> CSV</li>
+                        <li><strong>Records:</strong> 141</li>
+                        <li><strong>Best for:</strong> Hospitality industry analysis</li>
+                    </ul>
                 </div>
             </div>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>Movie Reviews</h3>
+                    <h3><i class="fas fa-film"></i> Movie Reviews</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
                     <p>Movie-specific reviews with three-way sentiment classification.</p>
+                    <ul>
+                        <li><strong>Format:</strong> CSV</li>
+                        <li><strong>Records:</strong> 128</li>
+                        <li><strong>Best for:</strong> Entertainment industry sentiment trends</li>
+                    </ul>
                 </div>
             </div>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>Tech Reviews</h3>
+                    <h3><i class="fas fa-laptop"></i> Tech Reviews</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
                     <p>Technology product reviews with three-way sentiment classification.</p>
+                    <ul>
+                        <li><strong>Format:</strong> CSV</li>
+                        <li><strong>Records:</strong> 121</li>
+                        <li><strong>Best for:</strong> Product feedback analysis</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div class="docs-section">
-            <h2>Using the Application</h2>
+            <h2>💻 Using the Application</h2>
             <h3>Uploading Data</h3>
             <ol>
-                <li>Click the "Upload CSV" button</li>
-                <li>Select your CSV file</li>
-                <li>Choose the dataset type (if not specified in the CSV)</li>
-                <li>Click "Analyze" to start the analysis</li>
+                <li>Click the "Choose CSV File" button</li>
+                <li>Select your CSV file from your computer</li>
+                <li>Click "Analyze" to start the sentiment analysis</li>
+                <li>Wait for the results to be generated</li>
             </ol>
 
             <h3>Understanding Results</h3>
-            <p>The analysis provides:</p>
+            <p>The analysis provides comprehensive insights:</p>
             <ul>
-                <li>Overall sentiment score</li>
-                <li>Sentiment distribution</li>
-                <li>Key phrases and words</li>
-                <li>Confidence scores</li>
-                <li>Dataset-specific insights</li>
+                <li><strong>Overall sentiment score:</strong> Average polarity across all reviews</li>
+                <li><strong>Sentiment distribution:</strong> Histogram showing sentiment patterns</li>
+                <li><strong>Category breakdown:</strong> Positive, Neutral, and Negative counts</li>
+                <li><strong>Word clouds:</strong> Visual representation of frequent terms</li>
+                <li><strong>Subjectivity analysis:</strong> How opinionated vs factual reviews are</li>
+                <li><strong>Example reviews:</strong> Most positive and negative examples</li>
             </ul>
         </div>
 
         <div class="docs-section">
-            <h2>Best Practices</h2>
+            <h2>✨ Best Practices</h2>
             <h3>CSV File Format</h3>
-            <div class="code-block">
-Review,Liked,Dataset
-"Great experience!",1,"Restaurant"
-"Poor service.",0,"Hotel"
-"Average movie.",2,"Movie"
-            </div>
+            <div class="code-block">Review,Liked,Dataset
+                "Great experience!",1,"Restaurant"
+                "Poor service.",0,"Hotel"
+                "Average movie.",2,"Movie"</div>
 
             <h3>Tips for Best Results</h3>
             <ul>
                 <li>Ensure your CSV file follows the required format</li>
-                <li>Use clear, concise text in reviews</li>
-                <li>Include the dataset type when analyzing multiple types of reviews</li>
-                <li>Keep review lengths reasonable (1-2 sentences recommended)</li>
+                <li>Use UTF-8 encoding for special characters</li>
+                <li>Keep file size under 10MB for optimal performance</li>
+                <li>Use clear, complete sentences in reviews</li>
+                <li>Avoid excessive special characters or emojis</li>
             </ul>
         </div>
 
         <div class="docs-section">
-            <h2>Troubleshooting</h2>
-            <h3>Common Issues</h3>
+            <h2>🔧 Troubleshooting</h2>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>File Upload Failed</h3>
+                    <h3><i class="fas fa-exclamation-triangle"></i> File Upload Failed</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
+                    <p>If your file upload fails, check the following:</p>
                     <ul>
-                        <li>Check file format (must be CSV)</li>
-                        <li>Verify file size (max 10MB)</li>
-                        <li>Ensure proper column headers</li>
+                        <li>File format must be .csv</li>
+                        <li>File size must be under 10MB</li>
+                        <li>Ensure proper column headers (Review, Liked)</li>
+                        <li>Check for corrupted or incomplete CSV file</li>
                     </ul>
                 </div>
             </div>
+
             <div class="accordion">
                 <div class="accordion-header">
-                    <h3>Analysis Errors</h3>
+                    <h3><i class="fas fa-bug"></i> Analysis Errors</h3>
                     <i class="fas fa-chevron-down accordion-icon"></i>
                 </div>
                 <div class="accordion-content">
+                    <p>If analysis fails, verify:</p>
                     <ul>
-                        <li>Verify text encoding (UTF-8 recommended)</li>
-                        <li>Check for special characters</li>
-                        <li>Ensure proper sentiment values (0, 1, or 2)</li>
+                        <li>Text encoding is UTF-8</li>
+                        <li>Sentiment values are 0, 1, or 2</li>
+                        <li>No completely empty rows in the CSV</li>
+                        <li>At least one valid review with text content</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="accordion">
+                <div class="accordion-header">
+                    <h3><i class="fas fa-question-circle"></i> No Results Displayed</h3>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="accordion-content">
+                    <p>If results don't appear:</p>
+                    <ul>
+                        <li>Refresh the page and try again</li>
+                        <li>Check browser console for errors (F12)</li>
+                        <li>Ensure JavaScript is enabled</li>
+                        <li>Try with a sample dataset first</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="docs-section">
-            <h2>Support</h2>
-            <p>For additional support:</p>
+            <h2>📧 Support</h2>
+            <p>For additional support and questions:</p>
             <ul>
-                <li>Check the FAQ section</li>
-                <li>Contact support team</li>
-                <li>Review the documentation</li>
+                <li>Visit our <a href="https://github.com/Hritikraj8804/Sentiment-Analysis.git" target="_blank"
+                        style="color: var(--primary-600); font-weight: 600;">GitHub repository</a></li>
+                <li>Check the sample datasets on the <a href="data.html"
+                        style="color: var(--primary-600); font-weight: 600;">Data page</a></li>
+                <li>Review this documentation for common solutions</li>
             </ul>
         </div>
     </div>
 
+    <script src="script.js"></script>
     <script>
-        // Sidebar functionality
-        const hamburger = document.querySelector('.hamburger');
-        const sidebar = document.querySelector('.sidebar');
-        const closeSidebar = document.querySelector('.close-sidebar');
+        // Accordion functionality
+        document.querySelectorAll('.accordion-header').forEach(header => {
+            header.addEventListener('click', function () {
+                const content = this.nextElementSibling;
+                const icon = this.querySelector('.accordion-icon');
 
-        hamburger.addEventListener('click', () => {
-            sidebar.classList.add('active');
-        });
+                // Toggle active class
+                this.classList.toggle('active');
+                content.classList.toggle('active');
 
-        closeSidebar.addEventListener('click', () => {
-            sidebar.classList.remove('active');
+                // Close other accordions in the same section
+                const section = this.closest('.docs-section');
+                if (section) {
+                    section.querySelectorAll('.accordion-header').forEach(otherHeader => {
+                        if (otherHeader !== this && otherHeader.classList.contains('active')) {
+                            otherHeader.classList.remove('active');
+                            otherHeader.nextElementSibling.classList.remove('active');
+                        }
+                    });
+                }
+            });
         });
     </script>
 </body>
+
 </html>
