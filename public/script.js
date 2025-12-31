@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const formData = new FormData(document.getElementById('sentiment-form'));
         const file = formData.get('csv_file');
 
-        if (!file) {
+        if (!file || !file.name || file.size === 0) {
             showErrorAnimation('Please select a file first!');
             return;
         }
